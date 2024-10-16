@@ -1,8 +1,16 @@
+# Secrets
+
 .env
 authorized_keys
+
+# For testing
+
+server.env
+test
 composes/config
 composes/homebridge
-test
+
+# Configs
 
 configs/homepage/logs
 configs/plex/*
