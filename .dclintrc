@@ -1,0 +1,13 @@
+{
+  "rules": {
+    "require-project-name-field": 0,
+    "service-image-require-explicit-tag": 0,
+    "no-duplicate-exported-ports": 0,
+    "require-quotes-in-ports": 1,
+    "services-alphabetical-order": 2
+  },
+  "quiet": false,
+  "exclude": [
+    "tests"
+  ]
+}

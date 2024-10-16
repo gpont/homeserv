@@ -1,0 +1,11 @@
+.env
+authorized_keys
+composes/config
+composes/homebridge
+test
+
+configs/homepage/logs
+configs/plex/*
+!configs/plex/.gitkeep
+configs/transmission/*
+!configs/transmission/settings.json

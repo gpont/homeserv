@@ -1,0 +1,32 @@
+services:
+  dozzle:
+    extends:
+      file: composes/network.yml
+      service: dozzle
+
+  homepage:
+    extends:
+      file: composes/dashboard.yml
+      service: homepage
+  noip:
+    extends:
+      file: composes/network.yml
+      service: noip
+
+  plex:
+    extends:
+      file: composes/plex.yml
+      service: plex
+
+  ssh_server:
+    extends:
+      file: composes/network.yml
+      service: ssh_server
+
+  transmission:
+    extends:
+      file: composes/plex.yml
+      service: transmission
+configs:
+  ssh_authorized_keys:
+    file: ./authorized_keys

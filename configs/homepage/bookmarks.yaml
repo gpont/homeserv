@@ -1,0 +1,11 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/bookmarks
+
+- Links:
+    - Torrents search:
+        - abbr: TS
+          href: https://www.torrentdownloads.pro/
+    - Rutracker:
+        - abbr: RT
+          href: https://rutracker.org/

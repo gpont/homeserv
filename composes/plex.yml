@@ -1,0 +1,66 @@
+services:
+  plex:
+    image: lscr.io/linuxserver/plex:latest
+    container_name: plex
+    # devices: # not working on mac os
+    #   - /dev/dri:/dev/dri # Required for plex HW transcoding / QuickSync
+    volumes:
+      - ${PLEX_CONFIG_PATH}:/config
+      - ${MEDIA_SHARE}/TV Shows:/tv
+      - ${MEDIA_SHARE}/Movies:/movies
+    # network_mode: host
+    environment:
+      - PUID=${PUID}
+      - PGID=${GUID}
+      - TZ=${PLEX_TZ}
+      - VERSION=docker
+      - PLEX_CLAIM=${PLEX_CLAIM}
+    env_file: "../.env"
+    ports:
+      - '32400:32400'
+    restart: unless-stopped
+    healthcheck:
+      test: curl --fail localhost:32400 || exit 1
+      interval: 60s
+      retries: 5
+      start_period: 300s
+      timeout: 2s
+    labels:
+      - homepage.group=Media
+      - homepage.name=Plex
+      - homepage.icon=plex.png
+      - homepage.href=http://${BASE_DOMAIN}:32400/
+      - homepage.description=Plex server
+      - homepage.ping=http://${BASE_DOMAIN}:32400/
+      - homepage.widget.type=plex
+      - homepage.widget.url=http://${BASE_DOMAIN}:32400/
+      - homepage.widget.key=${PLEX_API_TOKEN}
+  transmission:
+    image: lscr.io/linuxserver/transmission:latest
+    container_name: transmission
+    volumes:
+      - ${TRANSMISSION_CONFIG_PATH}:/config
+      - ${MEDIA_SHARE}:/downloads
+      - ${MEDIA_SHARE}:/watch
+    environment:
+      - PUID=1000
+      - PGID=1000
+    env_file: "../.env"
+    ports:
+      - '9091:9091'
+      - '51413:51413'
+      - '51413:51413/udp'
+    restart: unless-stopped
+    healthcheck:
+      test: curl --fail localhost:9091 || exit 1
+      interval: 60s
+      retries: 5
+      start_period: 300s
+      timeout: 2s
+    labels:
+      - homepage.group=Media
+      - homepage.name=Transmission
+      - homepage.icon=transmission.png
+      - homepage.href=http://${BASE_DOMAIN}:9091/
+      - homepage.description=Torrent client
+      - homepage.ping=http://${BASE_DOMAIN}:9091/
