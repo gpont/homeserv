@@ -17,3 +17,5 @@ configs/plex/*
 !configs/plex/.gitkeep
 configs/transmission/*
 !configs/transmission/settings.json
+.gitsecret/keys/random_seed
+!*.secret

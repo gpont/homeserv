@@ -5,6 +5,8 @@
 ```sh
 cat ~/.ssh/id_homeserv.pub >> ./authorized_keys
 docker compose build
+brew install git-secret
+git-secret reveal
 ```
 
 ## Running
