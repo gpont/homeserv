@@ -8,6 +8,12 @@ services:
     extends:
       file: composes/dashboard.yml
       service: homepage
+
+  dockerproxy:
+    extends:
+      file: composes/dashboard.yml
+      service: dockerproxy
+
   noip:
     extends:
       file: composes/network.yml
