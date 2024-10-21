@@ -1,0 +1,18 @@
+services:
+  nginx:
+    image: 'jc21/nginx-proxy-manager:latest'
+    container_name: nginx
+    volumes:
+      - ../configs/nginx:/data
+      - ../configs/nginx/letsencrypt:/etc/letsencrypt
+    ports:
+      - '80:80'
+      - '81:81'
+      - '443:443'
+    restart: unless-stopped
+    labels:
+      - homepage.group=Infrastructure
+      - homepage.name=Nginx
+      - homepage.icon=nginx.png
+      - homepage.href=http://${BASE_DOMAIN}:81/
+      - homepage.description=Nginx proxy

@@ -4,22 +4,23 @@ services:
     container_name: dozzle
     volumes:
       - ${DOCKER_SOCK}:/var/run/docker.sock
+      - ../configs/dozzle:/data
     ports:
       - '9999:8080'
     restart: unless-stopped
     healthcheck:
-      test: curl --fail localhost:8080 || exit 1
+      test: [ "CMD", "/dozzle", "healthcheck" ]
       interval: 60s
+      timeout: 30s
       retries: 5
       start_period: 300s
-      timeout: 2s
     labels:
       - homepage.group=Infrastructure
       - homepage.name=Dozzle
       - homepage.icon=dozzle.png
-      - homepage.href=http://${BASE_DOMAIN}:9999/
+      - homepage.href=http://dozzle.${BASE_DOMAIN}/
       - homepage.description=Docker logs
-      - homepage.ping=http://${BASE_DOMAIN}:9999/
+
   noip:
     image: ghcr.io/noipcom/noip-duc:latest
     container_name: noip-duc

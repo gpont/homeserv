@@ -1,4 +1,8 @@
 services:
+  dockerproxy:
+    extends:
+      file: composes/homepage.yml
+      service: dockerproxy
   dozzle:
     extends:
       file: composes/network.yml
@@ -6,13 +10,13 @@ services:
 
   homepage:
     extends:
-      file: composes/dashboard.yml
+      file: composes/homepage.yml
       service: homepage
 
-  dockerproxy:
+  nginx:
     extends:
-      file: composes/dashboard.yml
-      service: dockerproxy
+      file: composes/proxy.yml
+      service: nginx
 
   noip:
     extends:
@@ -21,7 +25,7 @@ services:
 
   plex:
     extends:
-      file: composes/plex.yml
+      file: composes/media.yml
       service: plex
 
   ssh_server:
@@ -31,8 +35,9 @@ services:
 
   transmission:
     extends:
-      file: composes/plex.yml
+      file: composes/media.yml
       service: transmission
+
 configs:
   ssh_authorized_keys:
     file: ./authorized_keys

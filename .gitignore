@@ -19,3 +19,7 @@ configs/transmission/*
 !configs/transmission/settings.json
 .gitsecret/keys/random_seed
 !*.secret
+configs/nginx/logs
+configs/nginx/letsencrypt*
+configs/nginx/custom_ssl
+configs/nginx/keys.json
